@@ -18,7 +18,6 @@
                 <legend><?= __('Add Role') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('deleted', ['empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -21,7 +21,6 @@
                     echo $this->Form->control('username');
                     echo $this->Form->control('password');
                     echo $this->Form->control('role_id', ['options' => $roles]);
-                    echo $this->Form->control('deleted', ['empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
