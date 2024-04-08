@@ -18,6 +18,11 @@ use Cake\ORM\Entity;
  */
 class Role extends Entity
 {
+    public function parentNode()
+    {
+        return null;
+    }
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *

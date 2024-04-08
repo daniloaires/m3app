@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -41,6 +42,8 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
+        $this->addBehavior('Acl.Acl', ['type' => 'requester']); // Add this code
+
         $this->setTable('users');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
@@ -52,6 +55,14 @@ class UsersTable extends Table
             'joinType' => 'INNER',
         ]);
     }
+
+    public function beforeSave(\Cake\Event\Event $event, \Cake\ORM\Entity $entity, 
+        \ArrayObject $options)
+    {
+        $hasher = new DefaultPasswordHasher();
+        $entity->password = $hasher->hash($entity->password);
+        return true;
+    }    
 
     /**
      * Default validation rules.
